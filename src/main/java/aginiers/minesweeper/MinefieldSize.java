@@ -1,10 +1,10 @@
 package aginiers.minesweeper;
 
 public enum MinefieldSize {
-	SMALL ("SMALL", 8, 6, 15, 2),
-	MEDIUM ("MEDIUM", 16, 12, 30, 3),
-	BIG ("BIG", 24, 18, 45, 4),
-	GIANT ("GIANT", 32, 24, 60, 5);
+	SMALL ("SMALL", 8, 6, 10, 2),
+	MEDIUM ("MEDIUM", 16, 12, 35, 3),
+	BIG ("BIG", 24, 18, 70, 4),
+	GIANT ("GIANT", 32, 24, 140, 5);
 	
 	private final String code;
 	private final int width;
@@ -54,6 +54,5 @@ public enum MinefieldSize {
 	public int getLives() {
 		return lives;
 	}
-	
 
 }

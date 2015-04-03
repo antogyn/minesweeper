@@ -3,9 +3,9 @@ package aginiers.minesweeper;
 public enum BoxType {
 	
 	FLAG ("flag"),
-    BOMB ("bomb"),
-    UNEXPOSED ("unexposed"),
-    EXPOSED ("exposed");
+	BOMB ("bomb"),
+	UNEXPOSED ("unexposed"),
+	EXPOSED ("exposed");
 	
 	private String code;
 	 

@@ -12,17 +12,17 @@ import org.json.JSONObject;
  */
 public class MinefieldHandler {
 	
-	private static Minefield minefield;
-	private boolean gameOn;
+	private static Minefield minefield = new Minefield(12, 8, 10, 3);
+	private static volatile boolean gameOn = false;
 	
 	public MinefieldHandler() {
-		minefield = new Minefield(12, 8, 10, 3);
-		this.gameOn = false;
+//		minefield = new Minefield(12, 8, 10, 3);
+//		gameOn = false;
 	}
 	
 	public MinefieldHandler(int width, int height, int mines, int lives) {
-		minefield = new Minefield(width, height, mines, lives);
-		this.gameOn = false;
+//		minefield = new Minefield(width, height, mines, lives);
+//		gameOn = false;
 	}
 	
 	private String getMinefieldJson() {
@@ -34,24 +34,28 @@ public class MinefieldHandler {
 		MinefieldSize size = MinefieldSize.MEDIUM;
 		if (!gameOn) {
 			minefield.newGame(size.getWidth(), size.getHeight(), size.getMines(), size.getLives());
-			this.gameOn = true;
+			MinefieldEndpoint.broadcast(getMinefieldJson());
+			gameOn = true;
+		} else {
+			MinefieldEndpoint.sendToUser(getMinefieldJson(), id);
 		}
-		MinefieldEndpoint.sendToUser(getMinefieldJson(), id);
 	}
 	
 	public void startGame(int id, MinefieldSize size) {
 		// FIXME
 		if (!gameOn) {
 			minefield.newGame(size.getWidth(), size.getHeight(), size.getMines(), size.getLives());
-			this.gameOn = true;
+			MinefieldEndpoint.broadcast(getMinefieldJson());
+			gameOn = true;
+		} else {
+			MinefieldEndpoint.sendToUser(getMinefieldJson(), id);
 		}
-		MinefieldEndpoint.sendToUser(getMinefieldJson(), id);
 	}
 	
 	
 	public void stopGame() {
 		if (gameOn) {
-			this.gameOn = false;
+			gameOn = false;
 		}
 	}
 
@@ -68,9 +72,9 @@ public class MinefieldHandler {
 		
 		JSONArray boxesJson = null;
 		if (data.get("click").equals("left")) {
-			boxesJson = minefield.leftClickBox((Integer) data.get("x"), (Integer) data.get("y"));
+			boxesJson = minefield.leftClickBox((int) data.get("x"), (int) data.get("y"));
 		} else if (data.get("click").equals("right")) {
-			boxesJson = minefield.rightClickBox((Integer) data.get("x"), (Integer) data.get("y"));
+			boxesJson = minefield.rightClickBox((int) data.get("x"), (int) data.get("y"));
 		} else if (data.get("click").equals("start")) {
 			startGame(id, MinefieldSize.valueOf((String) data.get("size")));	
 		} else if (data.get("click").equals("stop")) {

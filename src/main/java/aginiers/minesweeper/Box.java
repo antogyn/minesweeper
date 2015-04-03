@@ -2,11 +2,6 @@ package aginiers.minesweeper;
 
 import org.json.JSONObject;
 
-/**
- * 
- * @author aginiers
- *
- */
 public class Box {
 	
 	private boolean exposed;

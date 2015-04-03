@@ -14,7 +14,12 @@ import javax.websocket.server.ServerEndpoint;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-@ServerEndpoint("/websocket/{nickname}")
+/**
+ * 
+ * @author aginiers
+ *
+ */
+@ServerEndpoint("/minesweeper/{nickname}")
 public class MinefieldEndpoint {
 	
 	private static final AtomicInteger idIncrementer = new AtomicInteger(0);
@@ -123,5 +128,5 @@ public class MinefieldEndpoint {
 		messageJson.put("data", userList);
 		return messageJson.toString();
 	}
-	
+
 }

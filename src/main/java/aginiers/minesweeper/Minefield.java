@@ -14,14 +14,14 @@ import org.json.JSONObject;
  */
 public class Minefield {
 	
-	private volatile int width; // safe
-	private volatile int height; // safe
+	private volatile int width;
+	private volatile int height;
 	private volatile Box[][] boxes; // the array of boxes
 	private volatile int flags; // remaining flags
-	private volatile int mines; // safe
+	private volatile int mines;
 	private volatile int currentLives; // current life total
 	private volatile int lives; // life total given at start
-	private volatile int boxesLeft; // the boxes left to reveal before winning 
+	private volatile int boxesLeft; // the boxes left to reveal before winning
 	private volatile boolean win;
 	
 	public Minefield(int width, int height, int mines, int lives) {
@@ -68,7 +68,7 @@ public class Minefield {
 	 * Sets a random mine on the field
 	 * and increments the adjacent bombs on the
 	 * adjacent boxes
-	 * Lazy and naive.
+	 * Lazy and naive..
 	 * TODO: http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 	 */
 	private void setAMine() {
