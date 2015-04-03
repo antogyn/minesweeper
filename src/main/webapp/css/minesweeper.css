@@ -1,0 +1,58 @@
+#connect-container {
+	float: left;
+	width: 400px
+}
+
+#connect-container div {
+	padding: 5px;
+}
+
+#chat-container {
+	float: left;
+	margin-left: 15px;
+	width: 600px;
+}
+
+#chat {
+	border: 1px solid #CCCCCC;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	height: 300px;
+	overflow-y: scroll;
+	float: left;
+	padding: 5px;
+	width: 75%;
+}
+
+#chat p {
+	padding: 0;
+	margin: 0;
+	wordWrap: break-word;
+}
+
+#userlist {
+	border: 1px solid #CCCCCC;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	height: 300px;
+	overflow-y: scroll;
+	float: left;
+	padding: 5px;
+	width: 20%;
+}
+
+#userlist p {
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	padding: 0;
+	margin: 0;
+	wordWrap: break-word;
+}
+
+#error-panel {
+	display: none;
+}
+
+#chat-and-connect-container {
+	height: 350px;
+}

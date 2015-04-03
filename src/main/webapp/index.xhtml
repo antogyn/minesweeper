@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Super Minesweeper</title>
+    <link rel="stylesheet" type="text/css" href="css/minesweeper.css" />
+    <script src="js/jquery-2.1.1.js" />
+    <script type="application/javascript" src="js/fabric.js" />
+    <script type="application/javascript" src="js/minesweeper.js" />
+</head>
+<body>
+<div class="noscript"><h2 style="color: #ff0000">Please enable Javascript</h2></div>
+<div id="chat-and-connect-container">
+    <div id="connect-container">
+    	<div id="error-panel"/>
+    	<div>
+    		<textarea id="nickname" style="height: 15px" placeholder="Your nickname" onkeydown="if (event.keyCode == 13) {$('#connect').click(); return false;}"/>
+    	</div>
+        <div>
+            <button id="connect" onclick="connect();">Connect</button> 
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        </div>       
+        <div>
+            <textarea id="message" style="width: 350px" placeholder="Your message" onkeydown="if (event.keyCode == 13) {$('#broadcast').click(); return false;}"/>
+        </div>
+        <div>
+            <button id="sendText" onclick="sendText();" disabled="disabled">Send message</button>
+            <button id="clearLog" onclick="clearLog();">Clear</button>
+        </div>
+    </div>
+    <div id="chat-container">
+        <div id="chat"/>
+        <div id="userlist"/>
+    </div>
+</div>
+
+    
+<!--     <div id="canvas-container"> -->
+    	<p>
+   			<canvas id="canvas" width="500" height="500"></canvas>
+   			<br/>
+   			Flags : <span id="flags"></span>   Lives : <span id="lives"></span>
+   		</p> 
+   		<p>  
+		    <button id="startgame" onclick="startGame();">Start</button>
+		    <button id="stopgame" onclick="stopGame();">Stop</button>
+	    </p>   
+<!--     </div> -->
+</body>
+</html>
