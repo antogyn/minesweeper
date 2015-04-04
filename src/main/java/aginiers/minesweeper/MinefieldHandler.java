@@ -72,9 +72,9 @@ public class MinefieldHandler {
 		
 		JSONArray boxesJson = null;
 		if (data.get("click").equals("left")) {
-			boxesJson = minefield.leftClickBox((int) data.get("x"), (int) data.get("y"));
+			boxesJson = minefield.leftClickBox(Integer.parseInt((String) data.get("x")), Integer.parseInt((String) data.get("y")));
 		} else if (data.get("click").equals("right")) {
-			boxesJson = minefield.rightClickBox((int) data.get("x"), (int) data.get("y"));
+			boxesJson = minefield.rightClickBox(Integer.parseInt((String) data.get("x")), Integer.parseInt((String) data.get("y")));
 		} else if (data.get("click").equals("start")) {
 			startGame(id, MinefieldSize.valueOf((String) data.get("size")));	
 		} else if (data.get("click").equals("stop")) {

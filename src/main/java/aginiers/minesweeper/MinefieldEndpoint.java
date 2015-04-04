@@ -19,7 +19,7 @@ import org.json.JSONObject;
  * @author aginiers
  *
  */
-@ServerEndpoint("/minesweeper/{nickname}")
+@ServerEndpoint("/websocket/{nickname}")
 public class MinefieldEndpoint {
 	
 	private static final AtomicInteger idIncrementer = new AtomicInteger(0);
