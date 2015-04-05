@@ -124,11 +124,12 @@ function updateTarget(target) {
  * @param message
  */
 function addToChat(message) {
-	$("#chat").append($("<p></p>").text(message));
-	while ($("#chat").children().length > 25) {
-		$("#chat").children().first().remove();
+	var $chat = $("#chat");
+	$chat.append($("<p></p>").text(message));
+	while ($chat.children().length > 25) {
+		$chat.children().first().remove();
 	}
-	$("#chat").scrollTop = $("#chat").scrollHeight;
+	$chat.scrollTop($chat.prop('scrollHeight'));
 }
 
 /**
