@@ -13,6 +13,10 @@ function setConnected(connected) {
 }
 
 function connect() {
+	
+	if (ws !== null && ws.readyState !== 3) {
+		return;
+	}
 
 	var nicknameVal = $("#nickname").val();
 	var errorPanel = $("#error-panel");
@@ -58,7 +62,7 @@ function connect() {
 	ws.onclose = function(event) {
 		console.log(event);
 		setConnected(false);
-		addToChat("Bye :)");
+		addToChat("Connection closed.");
 	};
 	ws.onerror = function(event) {
 		console.log(event);
@@ -70,7 +74,8 @@ function connect() {
 }
 
 function disconnect() {
-	if (ws != null) {
+	console.log("Disconnection (user)")
+	if (ws !== null) {
 		ws.close();
 		ws = null;
 	}
@@ -83,7 +88,7 @@ function disconnect() {
  * Send the text message to the server
  */
 function sendText() {
-	if (ws != null) {
+	if (ws !== null) {
 		var message = $("#message");
 		var jsonText =
 			{
@@ -163,6 +168,23 @@ function stopGame() {
 	if (ws != null) {
 		var data = {
 				"click":"stop"
+		};
+		var jsonText =
+			{
+				type:"minefield",
+				data:data
+			};
+		ws.send(JSON.stringify(jsonText));
+	} else {
+		alert("WebSocket connection not established, please connect.");
+	}
+}
+
+function restartGame() {
+	if (ws != null) {
+		var data = {
+				"click":"restart",
+				"size":size
 		};
 		var jsonText =
 			{

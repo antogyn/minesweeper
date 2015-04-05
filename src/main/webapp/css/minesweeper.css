@@ -1,5 +1,4 @@
 #connect-container {
-	float: left;
 	width: 400px
 }
 
@@ -8,20 +7,22 @@
 }
 
 #chat-container {
-	float: left;
-	margin-left: 15px;
-	width: 600px;
+	margin-left: 5px;
+	width: 75%;
+}
+
+#nickname {
+	width:40%;
 }
 
 #chat {
 	border: 1px solid #CCCCCC;
 	border-right-color: #999999;
 	border-bottom-color: #999999;
-	height: 300px;
+	height: 325px;
 	overflow-y: scroll;
-	float: left;
 	padding: 5px;
-	width: 75%;
+	width: 100%;
 }
 
 #chat p {
@@ -34,11 +35,10 @@
 	border: 1px solid #CCCCCC;
 	border-right-color: #999999;
 	border-bottom-color: #999999;
-	height: 300px;
+	height: 120px;
 	overflow-y: scroll;
-	float: left;
 	padding: 5px;
-	width: 20%;
+	width: 100%;
 }
 
 #userlist p {
@@ -54,5 +54,26 @@
 }
 
 #chat-and-connect-container {
-	height: 350px;
+	position: absolute;
+	top: 10px;
+	left: 720px;
+	text-align: left;
+}
+
+
+#sendText-container {
+	width: 100%
+}
+
+#message {
+	width: 76%;
+}
+
+#sendText {
+	width:20%;
+	height:36px;
+	display:inline-block;
+	position: relative;
+	top: -14px;
+	left: -3px;
 }

@@ -3,48 +3,45 @@
 <head>
     <title>Super Minesweeper</title>
     <link rel="stylesheet" type="text/css" href="css/minesweeper.css" />
-    <script src="js/jquery-2.1.1.js" />
-    <script type="application/javascript" src="js/d3.js" />
-    <script type="application/javascript" src="js/minesweeper.js" />
 </head>
 <body>
 <div class="noscript"><h2 style="color: #ff0000">Please enable Javascript</h2></div>
+
+<div id="playfield-container">
+
+	<p>
+	  	<div id="playfield"></div>
+	 	<br/>
+	 	Flags : <span id="flags"></span>   Lives : <span id="lives"></span>
+	</p>
+	<p>
+	    <button id="restartgame" onclick="restartGame();">Restart</button>
+	</p> 
+
+</div>
+
+
 <div id="chat-and-connect-container">
     <div id="connect-container">
     	<div id="error-panel"/>
     	<div>
-    		<textarea id="nickname" style="height: 15px" placeholder="Your nickname" onkeydown="if (event.keyCode == 13) {$('#connect').click(); return false;}"/>
-    	</div>
-        <div>
-            <button id="connect" onclick="connect();">Connect</button> 
+    		<input type="text" id="nickname" placeholder="Your nickname" onkeydown="if (event.keyCode == 13) {$('#connect').click(); return false;}"/>
+    		<button id="connect" onclick="connect();">Connect</button> 
             <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
-        </div>       
-        <div>
-            <textarea id="message" style="width: 350px" placeholder="Your message" onkeydown="if (event.keyCode == 13) {$('#broadcast').click(); return false;}"/>
-        </div>
-        <div>
-            <button id="sendText" onclick="sendText();" disabled="disabled">Send message</button>
-            <button id="clearLog" onclick="clearLog();">Clear</button>
-        </div>
+    	</div>     
     </div>
     <div id="chat-container">
+    	<div id="userlist"/>
         <div id="chat"/>
-        <div id="userlist"/>
+        <div id="sendText-container">
+            <textarea id="message" placeholder="Your message" onkeydown="if (event.keyCode == 13) {$('#sendText').click(); return false;}"/>
+            <button id="sendText" onclick="sendText();" disabled="disabled">Send</button>
+        </div>
     </div>
 </div>
 
-    
-<!--     <div id="canvas-container"> -->
-    	<p>
-    		<div id="playfield"></div>
-   			<canvas id="canvas" width="500" height="500"></canvas>
-   			<br/>
-   			Flags : <span id="flags"></span>   Lives : <span id="lives"></span>
-   		</p> 
-   		<p>  
-		    <button id="startgame" onclick="startGame();">Start</button>
-		    <button id="stopgame" onclick="stopGame();">Stop</button>
-	    </p>   
-<!--     </div> -->
+<script src="js/jquery-2.1.1.js" />
+<script type="application/javascript" src="js/d3.js" />
+<script type="application/javascript" src="js/minesweeper.js" />
 </body>
 </html>

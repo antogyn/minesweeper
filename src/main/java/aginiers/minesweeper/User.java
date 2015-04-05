@@ -34,14 +34,20 @@ public class User {
 	}
 
 	public void sendMessage(String message) {
-		try {
-			if (session.isOpen()) {
-				session.getBasicRemote().sendText(message);
-			}
-		} catch (IOException e) {
+		System.out.println("Sending message to " + nickname);
+		synchronized (session) {
 			try {
-				session.close();
-			} catch (IOException e1) {
+				if (session.isOpen()) {
+					session.getBasicRemote().sendText(message);
+				}
+			} catch (Exception e) {
+				try {
+					e.printStackTrace();
+					if (session.isOpen()) {
+						session.close();
+					}
+				} catch (IOException e1) {
+				}
 			}
 		}
 	}

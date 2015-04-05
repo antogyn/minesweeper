@@ -79,7 +79,10 @@ public class MinefieldHandler {
 			startGame(id, MinefieldSize.valueOf((String) data.get("size")));	
 		} else if (data.get("click").equals("stop")) {
 			stopGame();
-		}
+		} else if (data.get("click").equals("restart")) {
+			stopGame();
+			startGame(id, MinefieldSize.valueOf((String) data.get("size")));	
+		} 
 		
 		long totalSec = System.currentTimeMillis() - deb;
 		System.out.println("time to compute " + totalSec);
