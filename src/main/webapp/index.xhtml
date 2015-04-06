@@ -1,83 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Super Minesweeper</title>
-    <link rel="stylesheet" type="text/css" href="css/minesweeper.css" />
+<title>Super Minesweeper</title>
+<link rel="stylesheet" type="text/css" href="css/minesweeper.css" />
 </head>
 <body>
-<div class="noscript"><h2 style="color: #ff0000">Please enable Javascript</h2></div>
+  <div class="noscript">
+    <h2 style="color: #ff0000">Please enable Javascript</h2>
+  </div>
 
-<div id="instructions">
-	<p>Welcome</p>
-	<p>
-		This is a multiplayer minesweeper; every player shares the same board.
-		<br/>
-		If you're alone, you can try it out by opening several tabs.
-	</p>
-	<p>
-		Instructions :
-		<ul> 
-			<li>Enter your nickname and press Enter or click on "Connect".</li> 
-			<li>
-				Use the left click to open a cell and the right click to put a flag on it
-				 (represented by an orange cell).
-			</li>
-			<li>
-				Once you have flagged all the bombs around an open cell,
-				 you can quickly open the remaining adjacent cells by left-clicking on it.
-			</li>
-			<li>
-				Unlike traditional minesweeper, you have several lives. If you click on a bomb, a flag appears and you
-				 lose one life. You can see your life total below the board.
-			</li>
-			<li>
-				You can reset the game by clicking on the "Restart" button.
-			</li>
-		</ul>
-	</p>
-	<p>
-		You can also use the chat to discuss with other players.
-	</p>
-	<p>
-		 Good luck !
-	</p>
-</div>
+  <div id="instructions">
+    <p>Welcome</p>
+    <p>
+      This is a multiplayer minesweeper; every player shares the same
+      board. <br /> If you're alone, you can try it out by opening
+      several tabs.
+    </p>
+    Instructions :
+    <ul>
+      <li>Enter your nickname and press Enter or click on
+        "Connect".</li>
+      <li>Use the left click to open a cell and the right click to
+        put a flag on it (represented by an orange cell).</li>
+      <li>Once you have flagged all the bombs around an open cell,
+        you can quickly open the remaining adjacent cells by
+        left-clicking on it.</li>
+      <li>Unlike traditional minesweeper, you have several lives.
+        If you click on a bomb, a flag appears and you lose one life.
+        You can see your life total below the board.</li>
+      <li>You can reset the game by clicking on the "Restart"
+        button.</li>
+    </ul>
 
-<div id="playfield-container">
+    <p>You can also use the chat to discuss with other players.</p>
+    <p>Good luck !</p>
+  </div>
 
-	<p>
-	  	<div id="playfield"></div>
-	 	<br/>
-	 	Flags : <span id="flags"></span>   Lives : <span id="lives"></span>
-	</p>
-	<p>
-	    <button id="restartgame" onclick="restartGame();">Restart</button>
-	</p> 
-
-</div>
+  <div id="playfield-container">
 
 
-<div id="chat-and-connect-container">
+    <div id="playfield"></div>
+    <br /> Flags : <span id="flags"></span>   Lives : <span id="lives"></span>
+
+    <p>
+      <button id="restartgame" onclick="restartGame();">Restart</button>
+    </p>
+
+  </div>
+
+
+  <div id="chat-and-connect-container">
     <div id="connect-container">
-    	<div id="error-panel"/>
-    	<div>
-    		<input type="text" id="nickname" placeholder="Your nickname" onkeydown="if (event.keyCode == 13) {$('#connect').click(); return false;}"/>
-    		<button id="connect" onclick="connect();">Connect</button> 
-            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
-    	</div>     
+      <div id="error-panel" />
+      <div>
+        <input type="text" id="nickname" placeholder="Your nickname"
+          onkeydown="if (event.keyCode == 13) {$('#connect').click(); return false;}" />
+        <button id="connect" onclick="connect();">Connect</button>
+        <button id="disconnect" disabled="disabled"
+          onclick="disconnect();">Disconnect</button>
+      </div>
     </div>
     <div id="chat-container">
-    	<div id="userlist"/>
-        <div id="chat"/>
-        <div id="sendText-container">
-            <textarea id="message" placeholder="Your message" onkeydown="if (event.keyCode == 13) {$('#sendText').click(); return false;}"/>
-            <button id="sendText" onclick="sendText();" disabled="disabled">Send</button>
-        </div>
+      <div id="userlist" />
+      <div id="chat" />
+      <div id="sendText-container">
+        <textarea id="message" placeholder="Your message"
+          onkeydown="if (event.keyCode == 13) {$('#sendText').click(); return false;}" />
+        <button id="sendText" onclick="sendText();" disabled="disabled">Send</button>
+      </div>
     </div>
-</div>
+  </div>
 
-<script src="js/jquery-2.1.1.js" />
-<script type="application/javascript" src="js/d3.js" />
-<script type="application/javascript" src="js/minesweeper.js" />
+  <script src="js/jquery-2.1.1.js" />
+  <script type="application/javascript" src="js/d3.js" />
+  <script type="application/javascript" src="js/minesweeper.js" />
 </body>
 </html>
