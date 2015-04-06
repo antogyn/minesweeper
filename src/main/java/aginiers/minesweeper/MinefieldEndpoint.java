@@ -1,6 +1,5 @@
 package aginiers.minesweeper;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,6 +42,7 @@ public class MinefieldEndpoint {
 	@OnClose
 	public void onClose(Session session) {
 		MinefieldEndpoint.users.remove(this.id);
+		this.user.disconnect();
 		broadcast(createLogJson(this.user.getNickname() + " has left."));
 		broadcast(createUserlistJson());
 	}
@@ -69,9 +69,8 @@ public class MinefieldEndpoint {
 	 * @param message
 	 */
 	public static void broadcast(String message) {
-		for (Map.Entry<Integer,User> mapEntry : MinefieldEndpoint.users.entrySet()) {
-			mapEntry.getValue().sendMessage(message);
-		}
+		JsonBroadcasterThread jsonBroadcasterThread = new JsonBroadcasterThread(MinefieldEndpoint.users, message);
+		jsonBroadcasterThread.start();
 	}
 
 	/**

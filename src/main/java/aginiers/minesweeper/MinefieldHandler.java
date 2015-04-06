@@ -97,7 +97,7 @@ public class MinefieldHandler {
 		JSONObject messageJson = new JSONObject();
 		messageJson.put("type", "minefield");	
 		messageJson.put("data", JsonHelper.getDataJson(boxesJson, minefield.getFlags(), minefield.getCurrentLives(), minefield.isWin()));
-		new JsonBroadcasterThread(messageJson).run();
+		MinefieldEndpoint.broadcast(messageJson.toString());
 	}
 
 

@@ -1,6 +1,7 @@
 package aginiers.minesweeper;
 
-import org.json.JSONObject;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 
@@ -9,16 +10,17 @@ import org.json.JSONObject;
  */
 public class JsonBroadcasterThread extends Thread {
 	
-	JSONObject json;
+	ConcurrentHashMap<Integer, User> users;
+	String message;
     
-	JsonBroadcasterThread(JSONObject json) {
-        this.json = json;
+	JsonBroadcasterThread(ConcurrentHashMap<Integer, User> users, String message) {
+		this.users = users;
+		this.message = message;
     }
 
     public void run() {
-    	long deb = System.currentTimeMillis();
-    	MinefieldEndpoint.broadcast(json.toString());
-    	long totalSec = System.currentTimeMillis() - deb;
-    	System.out.println("time to send " + totalSec);
+    	for (Map.Entry<Integer,User> mapEntry : users.entrySet()) {
+			mapEntry.getValue().sendMessage(message);
+		}
     }
 }

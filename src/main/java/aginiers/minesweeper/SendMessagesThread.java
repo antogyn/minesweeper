@@ -34,34 +34,37 @@ public class SendMessagesThread extends Thread {
 			this.messages.put(message);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			this.interrupt();
 		}
 	}
 
     public void run() {
-    	while (true) {
-    		String message = "";
-			try {
+    	try {
+	    	while (true) {
+	    		String message = "";
 				message = messages.take();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-    		Session session = user.getSession();
-    		synchronized (session) {
-    			try {
-    				if (session.isOpen()) {
-    					session.getBasicRemote().sendText(message);
-    				}
-    			} catch (Exception e) {
-    				try {
-    					e.printStackTrace();
-    					if (session.isOpen()) {
-    						session.close();
-    					}
-    				} catch (IOException e1) {
-    				}
-    			}
-    		}
-
+	    		Session session = user.getSession();
+	    		synchronized (session) {
+	    			try {
+	    				if (session.isOpen()) {
+	    					session.getBasicRemote().sendText(message);
+	    				}
+	    				if (user.getNickname().equals("blocktest")) {
+							Thread.sleep(1500);
+	    				}
+	    			} catch (IOException e) {
+	    				try {
+	    					e.printStackTrace();
+	    					if (session.isOpen()) {
+	    						session.close();
+	    					}
+	    				} catch (IOException e1) {
+	    				}
+	    			}
+	    		}
+	    	}
+    	} catch (InterruptedException e) {
+    		System.out.println("SendMessagesThread closed for user " + this.user.getNickname());
     	}
     }
 }

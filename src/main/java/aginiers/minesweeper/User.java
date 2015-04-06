@@ -35,6 +35,10 @@ public class User {
 	public String getNickname() {
 		return nickname;
 	}
+	
+	public void disconnect() {
+		sendMessagesThread.interrupt();
+	}
 
 	public void sendMessage(String message) {
 		sendMessagesThread.addMessage(message);
