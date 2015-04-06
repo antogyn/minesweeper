@@ -14,11 +14,14 @@ public class User {
 	private final int id;
 	private final Session session;
 	private final String nickname;
+	private final SendMessagesThread sendMessagesThread;
 	
 	public User(int id, Session session, String nickname) {
 		this.id = id;
 		this.session = session;
 		this.nickname = nickname;
+		this.sendMessagesThread = new SendMessagesThread(this);
+		sendMessagesThread.start();
 	}
 	
 	public int getId() {
@@ -34,22 +37,7 @@ public class User {
 	}
 
 	public void sendMessage(String message) {
-		System.out.println("Sending message to " + nickname);
-		synchronized (session) {
-			try {
-				if (session.isOpen()) {
-					session.getBasicRemote().sendText(message);
-				}
-			} catch (Exception e) {
-				try {
-					e.printStackTrace();
-					if (session.isOpen()) {
-						session.close();
-					}
-				} catch (IOException e1) {
-				}
-			}
-		}
+		sendMessagesThread.addMessage(message);
 	}
 	
 }
