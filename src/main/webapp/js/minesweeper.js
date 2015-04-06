@@ -29,6 +29,7 @@ function connect() {
 		errorPanel.text("");
 		errorPanel.css("display", "none");
 	}
+	$("#instructions").hide();
 	var target = "ws://localhost:8080/minesweeper/websocket/" + nicknameVal;
 	if ("WebSocket" in window) {
 		ws = new WebSocket(target);

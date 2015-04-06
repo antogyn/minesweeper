@@ -85,3 +85,9 @@ button::-moz-focus-inner {
     border: 0;
 
 }
+
+#instructions {
+	position: absolute;
+	left: 15px;
+	width: 680px;
+}
