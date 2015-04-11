@@ -17,18 +17,19 @@ public class SendMessagesThread extends Thread {
   private BlockingQueue<String> messages;
   private User user;
 
-  SendMessagesThread(User user) {
+  public SendMessagesThread(User user) {
     this.messages = new ArrayBlockingQueue<String>(50);
     this.user = user;
   }
 
-  public void addMessage(String message) {
+  public synchronized void addMessage(String message) {
     if (messages.remainingCapacity() == 0) {
       try {
         user.getSession()
             .close(
                 new CloseReason(CloseReason.CloseCodes.UNEXPECTED_CONDITION,
                     "Too many stored messages"));
+        this.interrupt();
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -52,9 +53,9 @@ public class SendMessagesThread extends Thread {
             if (session.isOpen()) {
               session.getBasicRemote().sendText(message);
             }
-            // if (user.getNickname().equals("blocktest")) {
-            // Thread.sleep(1500);
-            // }
+//             if (user.getNickname().equals("blocktest")) {
+//               Thread.sleep(5500);
+//             }
           } catch (IOException e) {
             try {
               e.printStackTrace();
